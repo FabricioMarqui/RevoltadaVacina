@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://bmhm4ge7ynuo1"]
+
+[ext_resource type="Script" uid="uid://bqdgyn2j8to1w" path="res://scenes/patient.gd" id="1_lkoqa"]
+[ext_resource type="Texture2D" uid="uid://vytguffn8l3d" path="res://assets/Material Duck Hunt/passaro/cima/sprite_0.png" id="1_queu6"]
+[ext_resource type="Texture2D" uid="uid://ryd5yi7tl4lc" path="res://assets/Material Duck Hunt/passaro/cima/sprite_1.png" id="2_lkoqa"]
+[ext_resource type="Texture2D" uid="uid://d1fh7h1uv1xsg" path="res://assets/Material Duck Hunt/passaro/cima/sprite_2.png" id="3_7jbiy"]
+[ext_resource type="Texture2D" uid="uid://bjtrelnupfiob" path="res://assets/Material Duck Hunt/passaro/lado/sprite_0.png" id="4_bksxq"]
+[ext_resource type="Texture2D" uid="uid://8gapeoxwe3ya" path="res://assets/Material Duck Hunt/passaro/lado/sprite_1.png" id="5_b0fk4"]
+[ext_resource type="Texture2D" uid="uid://rytpgywvt6cw" path="res://assets/Material Duck Hunt/passaro/lado/sprite_2.png" id="6_k0ywk"]
+[ext_resource type="Texture2D" uid="uid://cj8ppvbk11wsk" path="res://assets/Material Duck Hunt/passaro/morte/0.png" id="7_3moiw"]
+[ext_resource type="Texture2D" uid="uid://b2pt0pd4wat7x" path="res://assets/Material Duck Hunt/passaro/morte/1.png" id="8_tfk1g"]
+[ext_resource type="Texture2D" uid="uid://dn8ott47f7nf2" path="res://assets/Material Duck Hunt/passaro/morte/2.png" id="9_lbwjy"]
+[ext_resource type="Texture2D" uid="uid://ujvrigs3ns1w" path="res://assets/Material Duck Hunt/passaro/morte/3.png" id="10_ejk22"]
+[ext_resource type="Texture2D" uid="uid://dyyi5b0i4jl3n" path="res://assets/Material Duck Hunt/passaro/susto.png" id="11_y3o32"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lkoqa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_queu6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lkoqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7jbiy")
+}],
+"loop": true,
+"name": &"cima",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_bksxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_b0fk4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_k0ywk")
+}],
+"loop": true,
+"name": &"lado",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_3moiw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tfk1g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_lbwjy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ejk22")
+}],
+"loop": true,
+"name": &"morte",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_y3o32")
+}],
+"loop": true,
+"name": &"susto",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3rmju"]
+radius = 51.088158
+
+[node name="Patient" type="CharacterBody2D" unique_id=2131628143]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_lkoqa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1382757663]
+sprite_frames = SubResource("SpriteFrames_lkoqa")
+animation = &"cima"
+autoplay = "cima"
+frame_progress = 0.82922107
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1930340152]
+shape = SubResource("CircleShape2D_3rmju")
+
+[node name="movimento" type="Timer" parent="." unique_id=746392422]
+autostart = true
+
+[node name="anima" type="Timer" parent="." unique_id=669633703]
+autostart = true
+
+[node name="morte" type="Timer" parent="." unique_id=576922001]
+wait_time = 0.2
+
+[connection signal="timeout" from="movimento" to="." method="_on_movimento_timeout"]
+[connection signal="timeout" from="anima" to="." method="_on_anima_timeout"]
+[connection signal="timeout" from="morte" to="." method="_on_morte_timeout"]

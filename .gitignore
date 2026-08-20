@@ -1,0 +1,15 @@
+# Cache e arquivos temporários da Godot
+.godot/
+.import/
+
+# Executáveis e exportações do jogo
+build/
+export/
+*.exe
+*.apk
+*.zip
+*.pck
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
